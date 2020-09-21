@@ -10,6 +10,7 @@ namespace mexico {
 class Player
 {
 public:
+    static constexpr int maxLifeCount{ 10 };
     static constexpr int maxRollsPerTurn{ 3 };
 
     virtual void prepareForRound() = 0;
@@ -30,6 +31,7 @@ public:
 
     void reduceLifeCount(int count) { lifeCount -= count; }
     int getLifeCount() const { return lifeCount; }
+    void reset() { lifeCount = maxLifeCount; }
 
 protected:
     virtual bool stay(const Roll& roll) = 0;
@@ -43,6 +45,6 @@ private:
         return distribution(gen);
     }
 
-    int lifeCount{ 1 };
+    int lifeCount{ maxLifeCount };
 };
 } // namespace mexico
